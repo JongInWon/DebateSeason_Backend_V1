@@ -54,7 +54,8 @@ src/main/java/com/debateseason_backend_v1/
 ## 📜 주요 기여
 
 ### AWS 인프라 및 CI/CD 파이프라인 구축
-<img width="1041" alt="스크린샷 2025-05-20 오후 6 26 55" src="https://github.com/user-attachments/assets/33a1c474-d8af-441d-b046-4dda366c80ed" />
+<img width="1041" alt="스크린샷 2025-05-20 오후 6 26 55" src="https://github.com/user-attachments/assets/507079a3-8a20-4353-9e35-b3a50b44969b" />
+
 
 
 - 운영/개발 환경 분리(`PROD_CICD.yml`, `DEV_CICD.yml`)
