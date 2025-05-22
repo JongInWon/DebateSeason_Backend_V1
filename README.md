@@ -4,14 +4,9 @@
 
 [1. 프로젝트 소개](#-프로젝트-소개)  
 [2. 기술 스택](#-기술-스택)  
-[3. 아키텍처](#-아키텍처)  
-[4. 프로젝트 구조](#-프로젝트-구조)  
-[5. 주요 기능](#-주요-기능)   
-[6. 시작하기](#-시작하기)  
-[7. 환경 설정](#-환경-설정)  
-[8. API 문서](#-api-문서)  
-[9. CI/CD](#-CI/CD)  
-[10. 팀원 소개](#-팀원-소개)
+[3. 프로젝트 구조](#-프로젝트-구조)   
+[4. 주요 기여](#-주요-기여)     
+
 
 ## 📋 프로젝트 소개
 
@@ -40,11 +35,7 @@
 </br>
 <img src="https://img.shields.io/badge/Container-%23121011?style=for-the-badge"><img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"><img src="https://img.shields.io/badge/24.0.5-515151?style=for-the-badge">
 
-## 🏗 아키텍처
-
-<img width="1196" alt="Image" src="https://github.com/user-attachments/assets/7d779d6c-6128-4232-bd5c-ed6a6cebb033" />
-
-## 📑 프로젝트 구조
+## 🏗️ 프로젝트 구조
 
 ```plaintext
 src/main/java/com/debateseason_backend_v1/
@@ -60,110 +51,44 @@ src/main/java/com/debateseason_backend_v1/
 └── DebateSeasonBackendV1Application.java
 ```
 
-## 🚀 주요 기능
+## 📜 주요 기여
 
-### 인증 및 사용자 관리
-
-- OIDC 인증 로그인(Kakao, Apple)
-- JWT 기반 인증
-- 토큰 재발급
-- 사용자 프로필 관리
-
-### 이슈방 (토론 주제)
-
-- 이슈 목록 조회
-- 이슈 상세 조회
-- 이슈 즐겨찾기
-
-### 채팅방 (토론 안건)
-
-- 채팅방 생성
-- 채팅방 상세 조회
-- 찬성/반대 투표 기능
-
-### 실시간 채팅
-
-- WebSocket/STOMP 기반 실시간 메시지 전송
-- 채팅 메시지 페이지네이션 조회
-
-## 📌 시작하기
-
-### 필수 조건
-
-- JDK 17 이상
-- Gradle
-- MariaDB
-
-### 설치 및 실행
-
-1. 저장소 클론
-   ```bash
-   git clone https://github.com/your-repo/DebateSeason_Backend_V1.git
-   ```
-
-2. 환경 설정 파일 생성
-   ```bash
-   cd DebateSeason_Backend_V1/src/main/resources
-   cp application-local.yml application-secret.yml
-   ```
-
-3. `application-secret.yml` 파일을 열어 데이터베이스 정보를 입력하세요. (아래 환경 설정 참고)
+### AWS 인프라 및 CI/CD 파이프라인 구축
+<img width="1041" alt="스크린샷 2025-05-20 오후 6 26 55" src="https://github.com/user-attachments/assets/33a1c474-d8af-441d-b046-4dda366c80ed" />
 
 
-4. 프로젝트 디렉토리로 이동
-   ```bash
-   cd DebateSeason_Backend_V1
-   ```
+- 운영/개발 환경 분리(`PROD_CICD.yml`, `DEV_CICD.yml`)
+  - 개발 환경: develop 브랜치에 코드가 병합되면, 빌드&테스트 후 개발 서버에 자동 배포
+  - 운영 환경: main 브랜치에 코드가 병합되면, 빌드&테스트 후 운영 서버에 자동 배포
 
-5. 애플리케이션 빌드
-   ```bash
-   ./gradlew build
-   ```
+### 기여한 API 목록
+- **User**
+  - POST /api/v2/users/login (로그인)
+  - POST /api/v1/users/logout (로그아운)
+  - POST /api/v1/users/withdraw (회원탈퇴)
+- **Profile**
+  - POST /api/v1/profiles (프로필 등록)
+  - Patch /api/v1/profiles (프로필 수정)
+  - GET /api/v1/profiles/me (내 프로필 조회)
+  - Get /api/v1/profiles/nickname/check?query={} (닉네임 검사)
+- **Community**
+  - GET /api/v1/communities (커뮤니티 목록 조회)
+  - GET /api/v1/communities/search?query={} (커뮤니티 검색)  
+- **Terms**
+  - GET /api/v1/terms (이용약관 목록 조회)
+  - POST /api/v1/terms/agree (이용약관 동의)
+  - GET /api/v1/terms/agree (내가 동의한 이용약관 목록 조회)
+- **Auth**
+  - POST /api/v1/auth/reissue (Refresh&Access Token 재발급)
+- **App**
+  - GET /api/v1/app/version/check?versionCode={} (앱 버전 검사)
 
-4. 애플리케이션 실행
-   ```bash
-   ./gradlew bootRun
-   ```
 
-### 환경 설정
+### OIDC 인증 기반 id token 검증 로그인(Kakao, Apple)
 
-- `application-local.yml`: 로컬 개발 환경
-- `application-dev.yml`: 개발 서버 환경
-- `application-prod.yml`: 프로덕션 환경
-- `application-test.yml`: 테스트 환경
+<img width="552" alt="스크린샷 2025-03-14 오후 4 16 23" src="https://github.com/user-attachments/assets/083ba45f-d724-46ff-b626-1b3dae109448" />
 
-로컬 환경에서 실행하려면 `src/main/resources` 디렉토리에 `application-secret.yml` 파일을 생성하고 다음 설정을 추가해야 합니다.
+- 전략 패턴을 이용해 여러 소셜 로그인을 대응할 수 있게 설계
 
-```yaml
-spring:
-  jpa:
-    hibernate:
-      ddl-auto: create
-
-  datasource:
-    driver-class-name: org.mariadb.jdbc.Driver
-    url: jdbc:mariadb://localhost:3306/YOUR_DATABASE?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: YOUR_USERNAME
-    password: YOUR_PASSWORD
-```
-
-`YOUR_DATABASE`, `YOUR_USERNAME`, `YOUR_PASSWORD` 부분을 실제 MariaDB 정보로 변경하세요.
-
-## 📃 API 문서
-
-애플리케이션 실행 후 다음 URL에서 Swagger UI를 통해 API 문서를 확인할 수 있습니다.
-
-```
-http://localhost:8080/swagger-ui/index.html#/
-```
-
-## ♾️ CI/CD
-
-GitHub Actions과 AWS를 통해 브랜치에 따라 자동 배포가 진행됩니다.
-
-- 개발 환경: develop 브랜치에 코드가 병합되면, 빌드&테스트 후 개발 서버에 자동 배포
-- 운영 환경: main 브랜치에 코드가 병합되면, 빌드&테스트 후 운영 서버에 자동 배포
-
-## 👥 팀원 소개
-
-팀원 정보는 추후 업데이트 예정입니다.
+### JWT 기반 인증
+- 서버 인증을 담당하는 JWT 인증 구축
